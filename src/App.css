@@ -45,6 +45,11 @@
   padding: 0;
 }
 
+.compLinks {
+  text-decoration: none !important;
+  color: black;
+}
+
 .deleteCompany {
   color: rgb(197, 52, 52);
   cursor: pointer;

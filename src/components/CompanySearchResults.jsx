@@ -34,7 +34,7 @@ const CompanySearchResults = () => {
     <Container>
       <Row>
         <Col>
-          <div className="d-flex align-items-center">
+          <div className="d-flex align-items-center justify-content-center">
             <h1>{params.companyName}</h1>
             <Button
               className="favButton mx-3"

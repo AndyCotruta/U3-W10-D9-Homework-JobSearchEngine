@@ -11,13 +11,16 @@ const FavouriteCompanies = () => {
   return (
     <Container>
       <Row>
-        <Col xs={10} className="mx-auto my-3">
+        <Col xs={10} className="mx-auto text-center my-3">
           <h1>Favourite Companies List</h1>
           <ul className="favCompList">
             {" "}
             {favCompaniesArray.map((favCompany, i) => (
-              <li key={i} className="d-flex align-items-center">
-                <Link to={"/" + favCompany}>
+              <li
+                key={i}
+                className="d-flex justify-content-center align-items-center"
+              >
+                <Link to={"/" + favCompany} className="compLinks">
                   {i + 1}. {favCompany}
                 </Link>
                 <FaTrashAlt
