@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+.favButton {
+  height: 40px;
+}
+
+.favCompList {
+  margin: 0;
+  padding: 0;
+}
+
+.deleteCompany {
+  color: rgb(197, 52, 52);
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.deleteCompany:hover {
+  transform: scale(1.1);
+}
