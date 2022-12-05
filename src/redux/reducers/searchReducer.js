@@ -5,9 +5,10 @@ const initialState = {
 const searchReducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_SEARCH_RESULTS":
+      console.log("Adding search results", state, action.payload);
       return {
         ...state,
-        content: [...state.content, action.payload],
+        content: [...action.payload],
       };
 
     default:

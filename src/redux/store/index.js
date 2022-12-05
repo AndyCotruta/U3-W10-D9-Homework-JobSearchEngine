@@ -1,5 +1,5 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import searchReducer from "../actions/searchReducer";
+import searchReducer from "../reducers/searchReducer";
 import mainReducer from "../reducers";
 
 const bigReducer = combineReducers({

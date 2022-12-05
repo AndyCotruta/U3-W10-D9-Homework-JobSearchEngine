@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import store from "../redux/store";
+
 import Job from "./Job";
 
 const MainSearch = () => {
