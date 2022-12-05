@@ -1,35 +1,37 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Job from "./Job";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { addToFavourites, getJobsAction } from "../redux/actions";
 
 const CompanySearchResults = () => {
-  const [jobs, setJobs] = useState([]);
+  // const [jobs, setJobs] = useState([]);
+  const jobs = useSelector((state) => state.jobs.content);
   const params = useParams();
 
   const baseEndpoint =
     "https://strive-benchmark.herokuapp.com/api/jobs?company=";
 
   useEffect(() => {
-    getJobs();
+    getJobsAction(baseEndpoint, params.companyName);
   }, []);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const getJobs = async () => {
-    try {
-      const response = await fetch(baseEndpoint + params.companyName);
-      if (response.ok) {
-        const { data } = await response.json();
-        setJobs(data);
-      } else {
-        alert("Error fetching results");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getJobs = async () => {
+  //   try {
+  //     const response = await fetch(baseEndpoint + params.companyName);
+  //     if (response.ok) {
+  //       const { data } = await response.json();
+  //       setJobs(data);
+  //     } else {
+  //       alert("Error fetching results");
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <Container>
@@ -40,10 +42,11 @@ const CompanySearchResults = () => {
             <Button
               className="favButton mx-3"
               onClick={() => {
-                dispatch({
-                  type: "ADD_TO_FAVOURITES",
-                  payload: params.companyName,
-                });
+                addToFavourites(params.companyName);
+                // dispatch({
+                //   type: "ADD_TO_FAVOURITES",
+                //   payload: params.companyName,
+                // });
               }}
             >
               Add to favourites

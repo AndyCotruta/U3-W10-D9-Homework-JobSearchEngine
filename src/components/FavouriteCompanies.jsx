@@ -2,6 +2,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { removeFromFavourites } from "../redux/actions";
 
 const FavouriteCompanies = () => {
   const favCompaniesArray = useSelector((state) => state.favCompanies.content);
@@ -26,10 +27,11 @@ const FavouriteCompanies = () => {
                 <FaTrashAlt
                   className="deleteCompany mx-2"
                   onClick={() => {
-                    dispatch({
-                      type: "REMOVE_FROM_FAVOURITES",
-                      payload: i,
-                    });
+                    removeFromFavourites(i);
+                    // dispatch({
+                    //   type: "REMOVE_FROM_FAVOURITES",
+                    //   payload: i,
+                    // });
                   }}
                 />
               </li>

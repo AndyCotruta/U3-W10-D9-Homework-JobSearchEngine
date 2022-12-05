@@ -1,10 +1,12 @@
+import { ADD_SEARCH_RESULTS } from "../actions";
+
 const initialState = {
   content: [],
 };
 
 const searchReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD_SEARCH_RESULTS":
+    case ADD_SEARCH_RESULTS:
       console.log("Adding search results", state, action.payload);
       return {
         ...state,

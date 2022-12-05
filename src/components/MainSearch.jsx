@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { handleSubmitAction } from "../redux/actions";
 
 import Job from "./Job";
 
@@ -46,7 +47,7 @@ const MainSearch = () => {
           <h1>Remote Jobs Search</h1>
         </Col>
         <Col xs={10} className="mx-auto">
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmitAction(baseEndpoint, query)}>
             <Form.Control
               type="search"
               value={query}
