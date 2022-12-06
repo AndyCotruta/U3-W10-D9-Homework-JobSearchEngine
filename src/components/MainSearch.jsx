@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import { Container, Row, Col, Form, Spinner, Alert } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { handleSubmitAction } from "../redux/actions";
 
@@ -10,6 +10,7 @@ const MainSearch = () => {
   // const [jobs, setJobs] = useState([]);
 
   const Jobs = useSelector((state) => state.searchResults.content);
+  const loadingJobs = useSelector((state) => state.searchResults.isLoading);
 
   const dispatch = useDispatch();
 
@@ -30,6 +31,9 @@ const MainSearch = () => {
       <Row>
         <Col xs={10} className="mx-auto my-3">
           <h1>Remote Jobs Search</h1>
+          {loadingJobs && (
+            <Spinner animation="border" variant="info" className="ml-2" />
+          )}
         </Col>
         <Col xs={10} className="mx-auto">
           <Form onSubmit={handleSubmit}>
@@ -41,6 +45,9 @@ const MainSearch = () => {
             />
           </Form>
         </Col>
+        {/* {errorJobs && (
+          <Alert variant="danger">We couldn't fetch the data</Alert>
+        )} */}
         <Col xs={10} className="mx-auto mb-5">
           {Jobs.map((jobData) => (
             <Job key={jobData._id} data={jobData} />

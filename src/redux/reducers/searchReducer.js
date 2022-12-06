@@ -1,7 +1,8 @@
-import { ADD_SEARCH_RESULTS } from "../actions";
+import { ADD_SEARCH_RESULTS, CHANGE_SEARCH_IS_LOADING } from "../actions";
 
 const initialState = {
   content: [],
+  isLoading: true,
 };
 
 const searchReducer = (state = initialState, action) => {
@@ -11,6 +12,12 @@ const searchReducer = (state = initialState, action) => {
       return {
         ...state,
         content: [...action.payload],
+      };
+
+    case CHANGE_SEARCH_IS_LOADING:
+      return {
+        ...state,
+        isLoading: false,
       };
 
     default:

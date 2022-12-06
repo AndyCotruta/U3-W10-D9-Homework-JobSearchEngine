@@ -1,7 +1,8 @@
-import { ADD_JOBS } from "../actions";
+import { ADD_JOBS, CHANGE_JOBS_IS_LOADING } from "../actions";
 
 const initialState = {
   content: [],
+  isLoading: true,
 };
 
 const jobsReducer = (state = initialState, action) => {
@@ -12,6 +13,12 @@ const jobsReducer = (state = initialState, action) => {
         content: [...state.content, action.payload],
       };
     }
+
+    case CHANGE_JOBS_IS_LOADING:
+      return {
+        ...state,
+        isLoading: false,
+      };
 
     default:
       return state;
