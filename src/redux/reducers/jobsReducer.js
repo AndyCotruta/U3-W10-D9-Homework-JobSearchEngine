@@ -1,7 +1,7 @@
 import { ADD_JOBS } from "../actions";
 
 const initialState = {
-  jobs: [],
+  content: [],
 };
 
 const jobsReducer = (state = initialState, action) => {

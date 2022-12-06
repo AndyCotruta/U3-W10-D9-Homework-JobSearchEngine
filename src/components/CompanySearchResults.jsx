@@ -2,19 +2,20 @@ import { useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Job from "./Job";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { addToFavourites, getJobsAction } from "../redux/actions";
 
 const CompanySearchResults = () => {
   // const [jobs, setJobs] = useState([]);
   const jobs = useSelector((state) => state.jobs.content);
   const params = useParams();
+  const dispatch = useDispatch();
 
   const baseEndpoint =
     "https://strive-benchmark.herokuapp.com/api/jobs?company=";
 
   useEffect(() => {
-    getJobsAction(baseEndpoint, params.companyName);
+    dispatch(getJobsAction(baseEndpoint, params.companyName));
   }, []);
 
   // const dispatch = useDispatch();
@@ -42,7 +43,7 @@ const CompanySearchResults = () => {
             <Button
               className="favButton mx-3"
               onClick={() => {
-                addToFavourites(params.companyName);
+                dispatch(addToFavourites(params.companyName));
                 // dispatch({
                 //   type: "ADD_TO_FAVOURITES",
                 //   payload: params.companyName,
@@ -54,7 +55,7 @@ const CompanySearchResults = () => {
           </div>
 
           {jobs.map((jobData) => (
-            <Job key={jobData._id} data={jobData} />
+            <Job key={jobData.data._id} data={jobData.data[0]} />
           ))}
         </Col>
       </Row>

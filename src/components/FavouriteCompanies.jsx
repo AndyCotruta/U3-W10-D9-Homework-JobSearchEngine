@@ -27,7 +27,7 @@ const FavouriteCompanies = () => {
                 <FaTrashAlt
                   className="deleteCompany mx-2"
                   onClick={() => {
-                    removeFromFavourites(i);
+                    dispatch(removeFromFavourites(i));
                     // dispatch({
                     //   type: "REMOVE_FROM_FAVOURITES",
                     //   payload: i,
