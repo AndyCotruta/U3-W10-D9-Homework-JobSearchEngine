@@ -10,7 +10,6 @@ const MainSearch = () => {
   // const [jobs, setJobs] = useState([]);
 
   const Jobs = useSelector((state) => state.searchResults.content);
-  const loadingJobs = useSelector((state) => state.searchResults.isLoading);
 
   const dispatch = useDispatch();
 
@@ -31,9 +30,6 @@ const MainSearch = () => {
       <Row>
         <Col xs={10} className="mx-auto my-3">
           <h1>Remote Jobs Search</h1>
-          {loadingJobs && (
-            <Spinner animation="border" variant="info" className="ml-2" />
-          )}
         </Col>
         <Col xs={10} className="mx-auto">
           <Form onSubmit={handleSubmit}>
