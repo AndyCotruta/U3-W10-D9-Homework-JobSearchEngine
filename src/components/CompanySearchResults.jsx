@@ -1,13 +1,14 @@
 import { useEffect } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import Job from "./Job";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addToFavourites, getJobsAction } from "../redux/actions";
+import { addToFavourites, ADD_JOBS, getJobsAction } from "../redux/actions";
 
 const CompanySearchResults = () => {
   // const [jobs, setJobs] = useState([]);
   const jobs = useSelector((state) => state.jobs.content);
+  const jobsAreLoading = useSelector((state) => state.jobs.isLoading);
   const params = useParams();
   const dispatch = useDispatch();
 
@@ -53,9 +54,11 @@ const CompanySearchResults = () => {
               Add to favourites
             </Button>
           </div>
-
-          {jobs.map((jobData) => (
-            <Job key={jobData.data._id} data={jobData.data[0]} />
+          {jobsAreLoading && (
+            <Spinner animation="border" variant="info" className="ml-2" />
+          )}
+          {jobs[0].data.map((jobData, i) => (
+            <Job key={jobData._id} data={jobData} />
           ))}
         </Col>
       </Row>

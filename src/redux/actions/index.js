@@ -6,6 +6,7 @@ export const CHANGE_SEARCH_IS_LOADING = "CHANGE_IS_LOADING";
 export const CHANGE_SEARCH_IS_ERROR = "CHANGE_IS_ERROR";
 export const CHANGE_JOBS_IS_LOADING = "CHANGE_JOBS_IS_LOADING";
 export const CHANGE_JOBS_IS_ERROR = "CHANGE_JOBS_IS_ERROR";
+
 export const handleSubmitAction = (baseEndpoint, query) => {
   return async (dispatch, getState) => {
     try {
@@ -56,7 +57,12 @@ export const getJobsAction = (baseEndpoint, params) => {
     try {
       const response = await fetch(baseEndpoint + params);
       if (response.ok) {
+        dispatch({
+          type: CHANGE_JOBS_IS_LOADING,
+          payload: true,
+        });
         const data = await response.json();
+        console.log(data);
         dispatch({
           type: ADD_JOBS,
           payload: data,

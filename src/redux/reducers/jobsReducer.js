@@ -10,7 +10,7 @@ const jobsReducer = (state = initialState, action) => {
     case ADD_JOBS: {
       return {
         ...state,
-        content: [...state.content, action.payload],
+        content: [action.payload],
       };
     }
 

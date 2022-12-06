@@ -1,6 +1,5 @@
-import { Row, Col, Spinner } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 const Job = ({ data }) => {
   return (
@@ -9,7 +8,9 @@ const Job = ({ data }) => {
       style={{ border: "1px solid #00000033", borderRadius: 4 }}
     >
       <Col xs={3} md={6}>
-        <Link to={`/${data.company_name}`}>{data.company_name}</Link>
+        <Link to={`/${data.company_name}`}>
+          <div>{data.company_name}</div>
+        </Link>
       </Col>
       <Col xs={9} md={6}>
         <a href={data.url} target="_blank" rel="noreferrer">
