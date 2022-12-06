@@ -17,7 +17,7 @@ const jobsReducer = (state = initialState, action) => {
     case CHANGE_JOBS_IS_LOADING:
       return {
         ...state,
-        isLoading: false,
+        isLoading: action.payload,
       };
 
     default:

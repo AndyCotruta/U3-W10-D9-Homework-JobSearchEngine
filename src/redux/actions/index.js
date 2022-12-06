@@ -11,6 +11,10 @@ export const handleSubmitAction = (baseEndpoint, query) => {
     try {
       const response = await fetch(baseEndpoint + query + "&limit=20");
       if (response.ok) {
+        dispatch({
+          type: CHANGE_SEARCH_IS_LOADING,
+          payload: true,
+        });
         const { data } = await response.json();
         console.log(data);
         dispatch({

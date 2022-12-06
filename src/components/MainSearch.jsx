@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { Container, Row, Col, Form, Spinner, Alert } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { handleSubmitAction } from "../redux/actions";
+import {
+  ADD_SEARCH_RESULTS,
+  CHANGE_SEARCH_IS_LOADING,
+  handleSubmitAction,
+} from "../redux/actions";
 
 import Job from "./Job";
 
@@ -10,6 +14,7 @@ const MainSearch = () => {
   // const [jobs, setJobs] = useState([]);
 
   const Jobs = useSelector((state) => state.searchResults.content);
+  const loadingJobs = useSelector((state) => state.searchResults.isLoading);
 
   const dispatch = useDispatch();
 
@@ -18,6 +23,12 @@ const MainSearch = () => {
 
   const handleChange = (e) => {
     setQuery(e.target.value);
+    if (e.target.value === "") {
+      dispatch({
+        type: ADD_SEARCH_RESULTS,
+        payload: [],
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -45,9 +56,17 @@ const MainSearch = () => {
           <Alert variant="danger">We couldn't fetch the data</Alert>
         )} */}
         <Col xs={10} className="mx-auto mb-5">
-          {Jobs.map((jobData) => (
-            <Job key={jobData._id} data={jobData} />
-          ))}
+          <>
+            <div>
+              {loadingJobs && (
+                <Spinner animation="border" variant="info" className="ml-2" />
+              )}
+            </div>
+            <div>
+              {!loadingJobs &&
+                Jobs.map((jobData) => <Job key={jobData._id} data={jobData} />)}
+            </div>
+          </>
         </Col>
       </Row>
     </Container>

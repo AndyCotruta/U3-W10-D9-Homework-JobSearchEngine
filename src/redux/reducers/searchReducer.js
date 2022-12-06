@@ -17,7 +17,7 @@ const searchReducer = (state = initialState, action) => {
     case CHANGE_SEARCH_IS_LOADING:
       return {
         ...state,
-        isLoading: false,
+        isLoading: action.payload,
       };
 
     default:
